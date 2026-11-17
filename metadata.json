@@ -1,0 +1,6 @@
+{
+  "name": "Frank Fu Feng Real Estate",
+  "description": "Luxury residential, condominium, commercial, and investment real estate advisory and property listings by Frank Fu Feng.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

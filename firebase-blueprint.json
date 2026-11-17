@@ -1,0 +1,356 @@
+{
+  "entities": {
+    "Property": {
+      "title": "Property",
+      "description": "A real estate property listing managed by Frank Fu Feng Real Estate.",
+      "type": "object",
+      "properties": {
+        "slug": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 140,
+          "pattern": "^[a-z0-9\\-]+$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 160
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 6000
+        },
+        "price": {
+          "type": "number"
+        },
+        "listingType": {
+          "type": "string",
+          "enum": ["Sale", "Rent"]
+        },
+        "propertyType": {
+          "type": "string",
+          "enum": ["House", "Condo", "Luxury", "Townhouse", "Commercial", "Investment"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["For Sale", "For Rent", "Sold", "Pending"]
+        },
+        "featured": {
+          "type": "boolean"
+        },
+        "published": {
+          "type": "boolean"
+        },
+        "address": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 240
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "neighborhood": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "bedrooms": {
+          "type": "number"
+        },
+        "bathrooms": {
+          "type": "number"
+        },
+        "sqft": {
+          "type": "number"
+        },
+        "yearBuilt": {
+          "type": "number"
+        },
+        "parking": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "features": {
+          "type": "array",
+          "description": "List of up to 30 property features"
+        },
+        "imageUrls": {
+          "type": "array",
+          "description": "List of up to 15 property image URLs"
+        },
+        "imageAlts": {
+          "type": "array",
+          "description": "List of up to 15 image alt text strings matching imageUrls"
+        },
+        "lat": {
+          "type": "number"
+        },
+        "lng": {
+          "type": "number"
+        },
+        "seoTitle": {
+          "type": "string",
+          "maxLength": 140
+        },
+        "seoDescription": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "slug",
+        "title",
+        "description",
+        "price",
+        "listingType",
+        "propertyType",
+        "status",
+        "featured",
+        "published",
+        "address",
+        "city",
+        "bedrooms",
+        "bathrooms",
+        "sqft",
+        "imageUrls",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Inquiry": {
+      "title": "Inquiry",
+      "description": "Customer lead, property inquiry, viewing request, or property valuation submission.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "email": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 160
+        },
+        "phone": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 40
+        },
+        "propertyId": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "propertyTitle": {
+          "type": "string",
+          "maxLength": 180
+        },
+        "propertyAddress": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "propertyType": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "inquiryType": {
+          "type": "string",
+          "enum": ["Property Info", "Schedule Viewing", "Availability", "Property Valuation", "General Contact"]
+        },
+        "subject": {
+          "type": "string",
+          "maxLength": 180
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3000
+        },
+        "status": {
+          "type": "string",
+          "enum": ["new", "contacted", "completed"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "name",
+        "email",
+        "phone",
+        "inquiryType",
+        "message",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Testimonial": {
+      "title": "Testimonial",
+      "description": "Client testimonial item managed through the admin dashboard.",
+      "type": "object",
+      "properties": {
+        "clientName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "clientRole": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rating": {
+          "type": "number"
+        },
+        "quote": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 1000
+        },
+        "isPlaceholder": {
+          "type": "boolean"
+        },
+        "published": {
+          "type": "boolean"
+        },
+        "sortOrder": {
+          "type": "number"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "clientName",
+        "clientRole",
+        "rating",
+        "quote",
+        "isPlaceholder",
+        "published",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "SiteConfig": {
+      "title": "SiteConfig",
+      "description": "CMS content, general settings, SEO metadata, and navigation config.",
+      "type": "object",
+      "properties": {
+        "configType": {
+          "type": "string",
+          "enum": ["general", "content", "seo", "navigation"]
+        },
+        "payload": {
+          "type": "object"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["configType", "payload", "updatedAt"]
+    },
+    "MediaAsset": {
+      "title": "MediaAsset",
+      "description": "Uploaded or registered media item for property galleries and banners.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "storagePath": {
+          "type": "string",
+          "maxLength": 400
+        },
+        "alt": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "category": {
+          "type": "string",
+          "enum": ["property", "banner", "portrait", "brand"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["name", "url", "category", "createdAt", "updatedAt"]
+    },
+    "AdminUser": {
+      "title": "AdminUser",
+      "description": "Authorized administrator registry document.",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 160
+        },
+        "addedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["email", "addedAt"]
+    }
+  },
+  "firestore": {
+    "/properties/{propertyId}": {
+      "schema": { "$ref": "#/entities/Property" },
+      "description": "Real estate listings (published visible publicly, drafts admin-only)."
+    },
+    "/inquiries/{inquiryId}": {
+      "schema": { "$ref": "#/entities/Inquiry" },
+      "description": "Visitor leads, viewing requests, contact messages, and property valuation requests."
+    },
+    "/testimonials/{testimonialId}": {
+      "schema": { "$ref": "#/entities/Testimonial" },
+      "description": "Client testimonials and placeholder reviews."
+    },
+    "/siteConfig/{configId}": {
+      "schema": { "$ref": "#/entities/SiteConfig" },
+      "description": "Website CMS settings: general, content, seo, and navigation."
+    },
+    "/media/{mediaId}": {
+      "schema": { "$ref": "#/entities/MediaAsset" },
+      "description": "Admin media library registry."
+    },
+    "/admins/{adminUid}": {
+      "schema": { "$ref": "#/entities/AdminUser" },
+      "description": "Authorized admin accounts."
+    }
+  }
+}
