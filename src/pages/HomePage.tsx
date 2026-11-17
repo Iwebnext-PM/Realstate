@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   ArrowRight,
@@ -39,6 +39,20 @@ export const HomePage: React.FC = () => {
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [bedrooms, setBedrooms] = useState('');
+  const [videoError, setVideoError] = useState(false);
+  const heroVideoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const videoEl = heroVideoRef.current;
+    if (!videoEl) return;
+    videoEl.muted = true;
+    const playPromise = videoEl.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Browser autoplay policy blocked playback; muted fallback remains ready
+      });
+    }
+  }, []);
 
   const handleHeroSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -149,14 +163,24 @@ export const HomePage: React.FC = () => {
 
       {/* HERO SECTION */}
       <section className="relative bg-[#0B1D33] text-white overflow-hidden">
-        <div className="absolute inset-0">
-          <PropertyImage
-            src={contentConfig.heroImageUrl || GENERATED_IMAGES.heroEstate}
-            alt={contentConfig.heroImageAlt || 'Luxury contemporary real estate exterior'}
-            priority
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0B1D33]/80 via-[#0B1D33]/60 to-[#0B1D33]/90" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0B1D33] via-[#132946] to-[#081322]">
+          {!videoError && (
+            <video
+              ref={heroVideoRef}
+              src="https://q3cdb9wtkruynbzl.public.blob.vercel-storage.com/rs%20state.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              controls={false}
+              disablePictureInPicture
+              aria-hidden="true"
+              onError={() => setVideoError(true)}
+              className="w-full h-full object-cover object-center pointer-events-none"
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0B1D33]/70 via-[#0B1D33]/50 to-[#0B1D33]/80" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 sm:pt-28 sm:pb-24">
